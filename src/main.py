@@ -1,11 +1,12 @@
 from flask import Flask
-import omx_trigger
+from omx_trigger import play_video
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def hello_world():
+    play_video()
     return "Hello World!"
 
 
