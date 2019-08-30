@@ -35,7 +35,7 @@ def stream_handler(message):
     play_video(plu)
 
 
-plu_stream = db.child("stores").child("Southampton").stream(stream_handler)
+plu_stream = db.child(dbParent).child(dbChild).stream(stream_handler)
 
 # def store_lookup(child):
 #     result = db.child(dbParent).child(child).get()
