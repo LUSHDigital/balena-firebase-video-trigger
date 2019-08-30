@@ -20,8 +20,15 @@ firebase = pyrebase.initialize_app(config)
 
 db = firebase.database()
 
-def db_lookup(query):
-    result = db.child(query).get()
+def store_lookup(store):
+    result = db.child("stores").child(store).get()
     print(result.val())
 
-db_lookup("stores")
+store_lookup("Poole")
+
+def stream_handler(message):
+    print(message["event"]) # put
+    print(message["path"]) # /-K7yGTTEp7O549EzTYtI
+    print(message["data"]) # {'title': 'Pyrebase', "body": "etc..."}
+
+my_stream = db.child("stores").stream(stream_handler)
