@@ -3,6 +3,8 @@ import threading
 import os
 from os import path
 
+threads = []
+
 
 def omx_play(file):
     os.system("omxplayer --display=5" + file)
