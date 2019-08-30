@@ -3,10 +3,10 @@ import base64
 import pyrebase
 from omx_trigger import play_video
 
-databaseURL = os.environ["DBURL"]
-fbCredentials = os.environ["DBCRED"]
-dbParent = os.environ["DBPARENT"]
-dbChild = os.environ["DBCHILD"]
+databaseURL = os.environ.get("DBURL")
+fbCredentials = os.environ.get("DBCRED")
+dbParent = os.environ.get("DBPARENT")
+dbChild = os.environ.get("DBCHILD")
 
 print("databaseURL: " + databaseURL)
 print("fbCredentials: " + fbCredentials)
