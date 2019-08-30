@@ -1,14 +1,37 @@
-from flask import Flask
+import os
+import base64
+import pyrebase
 from omx_trigger import play_video
 
-app = Flask(__name__)
+databaseURL = os.environ["DBURL"]
+fbCredentials = os.environ["DBCRED"]
+
+with open("firebase-adminsdk.json", "wb") as fh:
+    fh.write(base64.b64decode(fbCredentials))
+
+config = {
+    "apiKey": "apiKey",
+    "authDomain": "lens-kiosk.firebaseapp.com",
+    "databaseURL": databaseURL,
+    "storageBucket": "lens-kiosk.appspot.com",
+    "serviceAccount": "firebase-adminsdk.json",
+}
+
+firebase = pyrebase.initialize_app(config)
+
+db = firebase.database()
 
 
-@app.route("/")
-def hello_world():
-    # play_video()
-    return "Hello World!"
+def stream_handler(message):
+    print("Playing video for " + message["data"])
+    play_video(message["data"])
 
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=80)
+plu_stream = db.child("stores").child("Southampton").stream(stream_handler)
+
+# def store_lookup(store):
+#     result = db.child("stores").child(store).get()
+#     print(result.val())
+#
+
+# store_lookup("Poole")
