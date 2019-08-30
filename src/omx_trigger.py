@@ -1,15 +1,20 @@
 import sys
+import thread
 import os
 from os import path
 
 
-def play_video(PLU="default"):
+def omx_play(file):
+    os.system("omxplayer --display=5" + file)
+
+
+def video_trigger(PLU="default"):
 
     filepath = "/home/pi/videos/" + PLU + ".mp4"
 
     if path.exists(filepath):
         print("file found, playing...")
-        os.system("omxplayer --display=5" + filepath)
+        thread.start_new_thread(omx_play(filepath), ())
     else:
         print("file not found, playing default video")
-        os.system("omxplayer --display=5 /home/pi/videos/default.mp4")
+        thread.start_new_thread(omx_play("/home/pi/videos/default.mp4"), ())

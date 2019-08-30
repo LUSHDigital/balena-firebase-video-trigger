@@ -1,7 +1,7 @@
 import os
 import base64
 import pyrebase
-from omx_trigger import play_video
+from omx_trigger import video_trigger
 
 databaseURL = os.environ["DBURL"]
 fbCredentials = os.environ["DBCRED"]
@@ -27,7 +27,7 @@ db = firebase.database()
 def stream_handler(message):
     plu = str(message["data"])
     print("Playing video for " + plu)
-    play_video(plu)
+    video_trigger(plu)
 
 
 plu_stream = db.child(dbParent).child(dbChild).stream(stream_handler)
