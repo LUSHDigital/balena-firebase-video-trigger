@@ -20,6 +20,8 @@ firebase = pyrebase.initialize_app(config)
 
 db = firebase.database()
 
-stores = db.child("stores").get()
+def db_lookup(query):
+    result = db.child(query).get()
+    print(result.val())
 
-print(stores.val())
+db_lookup("stores")
