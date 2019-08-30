@@ -4,9 +4,10 @@
 
     # use `install_packages` if you need to install dependencies,
     # for instance if you need git, just uncomment the line below.
-    RUN install_packages gcc build-essential omxplayer
+    RUN install_packages gcc build-essential omxplayer rclone
 
     COPY ./videos /home/pi/videos
+    COPY ./rclone.conf /home/pi/rclone.conf
 
     # Set our working directory
     WORKDIR /usr/src/app

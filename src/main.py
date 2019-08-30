@@ -13,7 +13,7 @@ print("fbCredentials: " + fbCredentials)
 print("dbParent: " + dbParent)
 print("dbChild: " + dbChild)
 
-with open("firebase-adminsdk.json", "wb") as fh:
+with open("/root/firebase-adminsdk.json", "wb") as fh:
     fh.write(base64.b64decode(fbCredentials))
 
 config = {
@@ -21,7 +21,7 @@ config = {
     "authDomain": "lens-kiosk.firebaseapp.com",
     "databaseURL": databaseURL,
     "storageBucket": "lens-kiosk.appspot.com",
-    "serviceAccount": "firebase-adminsdk.json",
+    "serviceAccount": "/root/firebase-adminsdk.json",
 }
 
 firebase = pyrebase.initialize_app(config)
