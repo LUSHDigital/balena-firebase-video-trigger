@@ -3,8 +3,6 @@ import base64
 import pyrebase
 from omx_trigger import video_trigger
 
-print(os.environ)
-
 databaseURL = os.environ["DBURL"]
 fbCredentials = os.environ["DBCRED"]
 dbParent = os.environ["DBPARENT"]
@@ -37,7 +35,7 @@ def stream_handler(message):
     video_trigger(plu)
 
 
-plu_stream = db.child(dbParent).child(dbChild).stream(stream_handler)
+plu_stream = db.child("stores").child("Southampton").stream(stream_handler)
 
 # def store_lookup(child):
 #     result = db.child(dbParent).child(child).get()
