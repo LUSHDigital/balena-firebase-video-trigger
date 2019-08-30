@@ -16,11 +16,13 @@ def video_trigger(PLU="default"):
 
     if path.exists(filepath):
         print("file found, playing...")
-        t = threading.Thread(target=omx_play, args=(filepath,))
-        threads.append(t)
-        t.start()
+        omx_play(filepath)
+        # t = threading.Thread(target=omx_play, args=(filepath,))
+        # threads.append(t)
+        # t.start()
     else:
         print("file not found, playing default video")
-        t = threading.Thread(target=omx_play, args=("/home/pi/videos/default.mp4",))
-        threads.append(t)
-        t.start()
+        omx_play("/home/pi/videos/default.mp4")
+        # t = threading.Thread(target=omx_play, args=("/home/pi/videos/default.mp4",))
+        # threads.append(t)
+        # t.start()
