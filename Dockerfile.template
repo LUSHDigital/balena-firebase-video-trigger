@@ -4,10 +4,22 @@
 
     # use `install_packages` if you need to install dependencies,
     # for instance if you need git, just uncomment the line below.
-    RUN install_packages gcc build-essential omxplayer rclone
+    RUN install_packages gcc build-essential omxplayer rclone cron
+
+    # Copy hello-cron file to the cron.d directory
+    COPY hello-cron /etc/cron.d/hello-cron
+
+    # Give execution rights on the cron job
+    RUN chmod 0644 /etc/cron.d/hello-cron
+
+    # Apply cron job
+    RUN crontab /etc/cron.d/hello-cron
+
+    # Create the log file to be able to run tail
+    RUN touch /var/log/cron.log
 
     COPY ./videos /home/pi/videos
-    COPY ./rclone.conf /home/pi/rclone.conf
+    COPY ./rclone.conf /root/.rclone.conf
 
     # Set our working directory
     WORKDIR /usr/src/app
@@ -25,4 +37,4 @@
     ENV UDEV=1
 
     # main.py will run when container starts up on the device
-    CMD ["python","-u","src/main.py"]
+    CMD ["crond", "&&", "python","-u","src/main.py"]
