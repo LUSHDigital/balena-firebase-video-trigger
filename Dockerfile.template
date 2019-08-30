@@ -37,4 +37,4 @@
     ENV UDEV=1
 
     # main.py will run when container starts up on the device
-    CMD cron && python -u src/main.py
+    CMD entrypoint.sh
