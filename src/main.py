@@ -3,7 +3,7 @@ import base64
 import pyrebase
 from omx_trigger import video_trigger
 
-print("OS var:" + os.environ)
+print(os.environ)
 
 databaseURL = os.environ["DBURL"]
 fbCredentials = os.environ["DBCRED"]
