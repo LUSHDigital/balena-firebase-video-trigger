@@ -5,6 +5,8 @@ from omx_trigger import play_video
 
 databaseURL = os.environ["DBURL"]
 fbCredentials = os.environ["DBCRED"]
+dbParent = os.environ["DBPARENT"]
+dbChild = os.environ["DBCHILD"]
 
 with open("firebase-adminsdk.json", "wb") as fh:
     fh.write(base64.b64decode(fbCredentials))
@@ -28,11 +30,11 @@ def stream_handler(message):
     play_video(plu)
 
 
-plu_stream = db.child("stores").child("Southampton").stream(stream_handler)
+plu_stream = db.child(dbParent).child(dbChild).stream(stream_handler)
 
-# def store_lookup(store):
-#     result = db.child("stores").child(store).get()
+# def store_lookup(child):
+#     result = db.child(dbParent).child(child).get()
 #     print(result.val())
 #
 
-# store_lookup("Poole")
+# store_lookup(dbChild)
