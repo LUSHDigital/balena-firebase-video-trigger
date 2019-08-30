@@ -3,10 +3,17 @@ import base64
 import pyrebase
 from omx_trigger import video_trigger
 
+print("OS var:" + os.environ)
+
 databaseURL = os.environ["DBURL"]
 fbCredentials = os.environ["DBCRED"]
 dbParent = os.environ["DBPARENT"]
 dbChild = os.environ["DBCHILD"]
+
+print("databaseURL: " + databaseURL)
+print("fbCredentials: " + fbCredentials)
+print("dbParent: " + dbParent)
+print("dbChild: " + dbChild)
 
 with open("firebase-adminsdk.json", "wb") as fh:
     fh.write(base64.b64decode(fbCredentials))
