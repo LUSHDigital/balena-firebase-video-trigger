@@ -23,8 +23,9 @@ db = firebase.database()
 
 
 def stream_handler(message):
-    print("Playing video for " + message["data"])
-    play_video(message["data"])
+    plu = str(message["data"])
+    print("Playing video for " + plu)
+    play_video(plu)
 
 
 plu_stream = db.child("stores").child("Southampton").stream(stream_handler)
