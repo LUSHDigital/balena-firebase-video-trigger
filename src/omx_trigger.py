@@ -11,7 +11,7 @@ def play_video(PLU="default"):
     if not path.exists(filepath):
         print("can not find file, playing default")
         filepath = "/usr/src/app/videos/default.mp4"
+        print("filepath is now: " + filepath)
 
-    print("filepath is now: " + filepath)
     print("playing...")
     os.system("omxplayer --display=5 " + filepath)
