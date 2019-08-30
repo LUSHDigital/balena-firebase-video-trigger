@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    play_video()
+    # play_video()
     return "Hello World!"
 
 
